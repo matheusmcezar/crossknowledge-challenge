@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>CrossKnowledge - Code challenge</title>
+</head>
+<body>
+  <input type="button" value="Format" onClick="format()" />
+  <script>
+    // This will create elements for testing every second
+    // Don't change this code if possible
+    (() => {
+      let elementsCount = 100
+      for (i = 0; i < elementsCount; i++) {
+        setTimeout(() => {
+          let el = document.createElement("div")
+          el.className = 'js-date-format'
+          el.innerHTML = (new Date()).toISOString()
+          document.body.appendChild(el)
+        }, i * 1000)
+      }
+    })();
+
+    /* ------ */
+
+    let dateList = Array();
+    function format() {
+      // initialize variables
+      let jsDateFormatList = document.getElementsByClassName("js-date-format");
+      let now = new Date();
+      let date;
+      let seconds;
+      let minutes;
+      let hours;
+
+      // store dates not saved yet
+      for (i=dateList.length; i<jsDateFormatList.length; i++) {
+        dateList[i] = new Date(jsDateFormatList[i].innerHTML);
+      }
+
+      // update labels on js-date-format class tags
+      for (i=0; i<dateList.length; i++) {
+        seconds = parseInt((now - dateList[i]) / 1000);
+        minutes = 0;
+        hours = 0;
+        if (seconds >= 60) {
+          minutes = parseInt(seconds / 60);
+        }
+        if (minutes >= 60) {
+          hours = parseInt(minutes / 60);
+        }
+
+        if (hours >= 24) {
+          jsDateFormatList[i].innerHTML = dateList[i].toISOString();
+        } else if (hours > 0) {
+          jsDateFormatList[i].innerHTML = hours + " hour" + ((hours>1)?"s":"") + " ago";
+        } else if (minutes > 0) {
+          jsDateFormatList[i].innerHTML = minutes + " minute" + ((minutes>1)?"s":"") + " ago";
+        } else {
+          jsDateFormatList[i].innerHTML = seconds + " second" + ((seconds>1)?"s":"") + " ago";
+        }
+      }
+    }
+  </script>
+</body>
+</html>

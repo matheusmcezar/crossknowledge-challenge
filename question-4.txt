@@ -1,0 +1,10 @@
+Question 4
+
+What are the main HTTP verbs used in REST applications and what are they meant for?
+
+The verbs are GET, POST, PUT, PATCH and DELETE. Each HTTP verb used in a REST application has a purpose. 
+- GET is used to retrieve one (normally with an id as parameter) or more records.
+- POST is used to create a new resource of a defined type. The user must send all the parameters to create a new row.
+- PUT is used to update a record, resending all of its attributes.
+- PATCH works in a similar way of PUT. The difference is that in PATCH only the data to be updated mus be send.
+- DELETE is used to remove a record.
